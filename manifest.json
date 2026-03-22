@@ -1,0 +1,7 @@
+{
+  "name": "Telegram Bridge",
+  "description": "Automatically forwards specific character messages to your Telegram Bridge.",
+  "version": "1.0.0",
+  "author": "AI Studio",
+  "main": "index.js"
+}
