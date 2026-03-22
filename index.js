@@ -18,7 +18,11 @@ import {
     setExternalAbortController,
 } from "../../../../script.js";
 
-const MODULE_NAME = 'telegram-bridge';
+// Dynamically determine the module name from the folder it's loaded from
+const moduleUrl = new URL(import.meta.url);
+const pathSegments = moduleUrl.pathname.split('/');
+const MODULE_NAME = pathSegments[pathSegments.length - 2] || 'telegram-bridge';
+
 const DEFAULT_SETTINGS = {
     bridgeUrl: 'ws://127.0.0.1:3000',
     autoConnect: true,
@@ -358,21 +362,21 @@ function handleFinalMessage(lastMessageIdInChatArray) {
         const lastMessage = context.chat[lastMessageIndex];
 
         if (lastMessage && !lastMessage.is_user && !lastMessage.is_system) {
-            const messageElement = $(\`#chat .mes[mesid="\${lastMessageIndex}"]\`);
+            const messageElement = $(`#chat .mes[mesid="${lastMessageIndex}"]`);
 
             if (messageElement.length > 0) {
                 const messageTextElement = messageElement.find('.mes_text');
 
                 let renderedText = messageTextElement.html()
-                    .replace(/<br\\s*\\/?>/gi, '\\n')
-                    .replace(/<\\/p>\\s*<p>/gi, '\\n\\n');
+                    .replace(/<br\s*\/?>/gi, '\n')
+                    .replace(/<\/p>\s*<p>/gi, '\n\n');
 
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = renderedText;
                 renderedText = tempDiv.textContent;
 
                 const targetChatId = lastProcessedChatId || 'default';
-                console.log(\`[Telegram Bridge] Captured final text, sending update to chatId: \${targetChatId}\`);
+                console.log(`[Telegram Bridge] Captured final text, sending update to chatId: ${targetChatId}`);
 
                 if (isStreamingMode) {
                     ws.send(JSON.stringify({

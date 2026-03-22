@@ -97,18 +97,22 @@ async function startServer() {
       version: "1.0.0",
       author: "AI Studio",
       js: "index.js",
-      css: "style.css"
+      css: "style.css",
+      loading_order: 9,
+      requires: [],
+      optional: []
     };
 
     try {
       const zip = new AdmZip();
-      zip.addFile("manifest.json", Buffer.from(JSON.stringify(manifest, null, 2)));
+      const folderName = "telegram-bridge";
+      zip.addFile(`${folderName}/manifest.json`, Buffer.from(JSON.stringify(manifest, null, 2)));
       
       // We will read the actual files from the project root
       const fs = require('fs');
-      if (fs.existsSync('index.js')) zip.addFile("index.js", fs.readFileSync('index.js'));
-      if (fs.existsSync('settings.html')) zip.addFile("settings.html", fs.readFileSync('settings.html'));
-      if (fs.existsSync('style.css')) zip.addFile("style.css", fs.readFileSync('style.css'));
+      if (fs.existsSync('index.js')) zip.addFile(`${folderName}/index.js`, fs.readFileSync('index.js'));
+      if (fs.existsSync('settings.html')) zip.addFile(`${folderName}/settings.html`, fs.readFileSync('settings.html'));
+      if (fs.existsSync('style.css')) zip.addFile(`${folderName}/style.css`, fs.readFileSync('style.css'));
 
       const zipBuffer = zip.toBuffer();
 
