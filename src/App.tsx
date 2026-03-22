@@ -92,14 +92,30 @@ export default function App() {
               <Shield className="w-4 h-4" />
               <h2 className="text-sm font-bold uppercase tracking-wider">Setup Guide</h2>
             </div>
-            <ol className="text-sm space-y-4 text-white/60 list-decimal list-inside">
-              <li>Create a bot via <a href="https://t.me/BotFather" target="_blank" className="text-emerald-400 hover:underline inline-flex items-center gap-1">@BotFather <ExternalLink className="w-3 h-3" /></a></li>
-              <li>Get your Chat ID (use <a href="https://t.me/userinfobot" target="_blank" className="text-emerald-400 hover:underline inline-flex items-center gap-1">@userinfobot <ExternalLink className="w-3 h-3" /></a>)</li>
-              <li>Push this project to a <strong>GitHub repository</strong>.</li>
-              <li>In SillyTavern, click the <strong>Extensions</strong> icon (the block icon at the top).</li>
-              <li>Click <strong>Install Extension</strong> and paste your GitHub repository URL.</li>
-              <li>In the SillyTavern extension settings, set the Bridge URL to:<br/><code className="bg-black/50 px-2 py-1 rounded text-emerald-400 text-xs mt-2 block break-all">{wsUrl}</code></li>
-            </ol>
+            
+            <div className="space-y-4 text-sm text-white/80">
+              <p>Because SillyTavern runs on your local computer, it cannot connect to this private AI Studio development server due to Google authentication.</p>
+              
+              <div className="bg-black/30 p-4 rounded-xl border border-white/5">
+                <h3 className="font-bold text-emerald-400 mb-2">Option 1: Run Locally (Recommended)</h3>
+                <ol className="list-decimal list-inside space-y-2 text-white/60 text-xs">
+                  <li>Export this project to a ZIP file (using the AI Studio menu).</li>
+                  <li>Extract it, open a terminal in the folder, and run <code className="text-emerald-400">npm install</code> then <code className="text-emerald-400">npm run dev</code>.</li>
+                  <li>In SillyTavern, set the Bridge URL to: <code className="text-emerald-400">ws://127.0.0.1:3000</code></li>
+                </ol>
+              </div>
+
+              <div className="bg-black/30 p-4 rounded-xl border border-white/5">
+                <h3 className="font-bold text-emerald-400 mb-2">Option 2: Use Public Cloud</h3>
+                <ol className="list-decimal list-inside space-y-2 text-white/60 text-xs">
+                  <li>Click the <strong>Share</strong> button in the top right of AI Studio.</li>
+                  <li>Open the public Shared App URL and configure your Bot Token there.</li>
+                  <li>In SillyTavern, set the Bridge URL to:<br/>
+                    <code className="text-emerald-400 break-all mt-1 block">wss://ais-pre-dt4nqv275ftc6hw74dddp2-167497036422.europe-west3.run.app</code>
+                  </li>
+                </ol>
+              </div>
+            </div>
           </section>
 
           <section className="bg-white/5 border border-white/10 rounded-2xl p-6 space-y-4">

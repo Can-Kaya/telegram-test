@@ -361,10 +361,16 @@ function handleFinalMessage(lastMessageIdInChatArray) {
         const context = SillyTavern.getContext();
         const lastMessage = context.chat[lastMessageIndex];
 
-        if (lastMessage && !lastMessage.is_user && !lastMessage.is_system) {
+        const isSystemMessage = lastMessage.is_system || 
+                                lastMessage.name === 'System' || 
+                                lastMessage.name === 'system' ||
+                                (lastMessage.extra && lastMessage.extra.type === 'system');
+
+        if (lastMessage && !lastMessage.is_user && !isSystemMessage) {
             const messageElement = $(`#chat .mes[mesid="${lastMessageIndex}"]`);
 
-            if (messageElement.length > 0) {
+            // Additional check to ensure it's not a system message element
+            if (messageElement.length > 0 && !messageElement.hasClass('sys-mes') && !messageElement.hasClass('system-message')) {
                 const messageTextElement = messageElement.find('.mes_text');
 
                 let renderedText = messageTextElement.html()
