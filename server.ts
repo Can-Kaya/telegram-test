@@ -56,7 +56,8 @@ async function startServer() {
     const appUrl = process.env.APP_URL || `${protocol}://${host}`;
     
     const manifest = {
-      name: "Telegram Bridge",
+      name: "telegram-bridge",
+      display_name: "Telegram Bridge",
       description: "Automatically forwards specific character messages to your Telegram Bridge.",
       version: "1.0.0",
       author: "AI Studio",

@@ -95,17 +95,10 @@ export default function App() {
             <ol className="text-sm space-y-4 text-white/60 list-decimal list-inside">
               <li>Create a bot via <a href="https://t.me/BotFather" target="_blank" className="text-emerald-400 hover:underline inline-flex items-center gap-1">@BotFather <ExternalLink className="w-3 h-3" /></a></li>
               <li>Get your Chat ID (use <a href="https://t.me/userinfobot" target="_blank" className="text-emerald-400 hover:underline inline-flex items-center gap-1">@userinfobot <ExternalLink className="w-3 h-3" /></a>)</li>
-              <li>
-                <a href="/api/download-extension" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-lg transition-colors text-xs font-bold mt-1 mb-2">
-                  <Download className="w-4 h-4" /> Download Extension ZIP
-                </a>
-              </li>
-              <li>Extract the ZIP file into your SillyTavern extensions folder:<br/>
-                <code className="block mt-2 p-2 bg-black rounded border border-white/5 text-[10px] break-all text-emerald-300">
-                  SillyTavern/data/default-user/extensions/telegram-bridge
-                </code>
-              </li>
-              <li>Restart SillyTavern and enable the extension in the Extensions menu.</li>
+              <li>Push this project to a <strong>GitHub repository</strong>.</li>
+              <li>In SillyTavern, click the <strong>Extensions</strong> icon (the block icon at the top).</li>
+              <li>Click <strong>Install Extension</strong> and paste your GitHub repository URL.</li>
+              <li>The extension will now appear in your list as "Telegram Bridge".</li>
             </ol>
           </section>
 
