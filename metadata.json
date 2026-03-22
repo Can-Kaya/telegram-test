@@ -1,0 +1,5 @@
+{
+  "name": "SillyTavern Telegram Bridge",
+  "description": "A Node.js bridge to forward specific character messages from SillyTavern to Telegram.",
+  "requestFramePermissions": []
+}
