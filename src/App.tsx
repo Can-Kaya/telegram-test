@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "motion/react";
 interface Config {
   telegramToken: string;
   chatId: string;
-  characterName: string;
   enabled: boolean;
 }
 
@@ -13,14 +12,15 @@ export default function App() {
   const [config, setConfig] = useState<Config>({
     telegramToken: "",
     chatId: "",
-    characterName: "Narrator",
     enabled: false,
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error', message: string } | null>(null);
+  const [wsUrl, setWsUrl] = useState("");
 
   useEffect(() => {
+    setWsUrl(`wss://${window.location.host}`);
     fetch("/api/config")
       .then((res) => res.json())
       .then((data) => {
@@ -98,7 +98,7 @@ export default function App() {
               <li>Push this project to a <strong>GitHub repository</strong>.</li>
               <li>In SillyTavern, click the <strong>Extensions</strong> icon (the block icon at the top).</li>
               <li>Click <strong>Install Extension</strong> and paste your GitHub repository URL.</li>
-              <li>The extension will now appear in your list as "Telegram Bridge".</li>
+              <li>In the SillyTavern extension settings, set the Bridge URL to:<br/><code className="bg-black/50 px-2 py-1 rounded text-emerald-400 text-xs mt-2 block break-all">{wsUrl}</code></li>
             </ol>
           </section>
 
@@ -147,7 +147,7 @@ export default function App() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Telegram Chat ID</label>
+                <label className="text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Default Telegram Chat ID</label>
                 <input
                   type="text"
                   value={config.chatId}
@@ -155,18 +155,7 @@ export default function App() {
                   placeholder="e.g. 123456789"
                   className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-white/10"
                 />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-widest text-white/40 ml-1">Character Name to Forward</label>
-                <input
-                  type="text"
-                  value={config.characterName}
-                  onChange={(e) => setConfig({ ...config, characterName: e.target.value })}
-                  placeholder="e.g. Narrator"
-                  className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-white/10"
-                />
-                <p className="text-[10px] text-white/30 ml-1 italic">Only messages from this specific name will be sent to Telegram.</p>
+                <p className="text-[10px] text-white/30 ml-1 italic">Messages initiated from SillyTavern will be sent here.</p>
               </div>
 
               <div className="flex items-center gap-3 pt-4">

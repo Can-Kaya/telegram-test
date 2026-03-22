@@ -1,0 +1,33 @@
+<div class="telegram_bridge_settings">
+    <div class="inline-drawer">
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <b>Telegram Bridge</b>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+        <div class="inline-drawer-content">
+            <div class="flex-container">
+                <label for="telegram_bridge_url">Bridge Server WebSocket URL:</label>
+                <input type="text" id="telegram_bridge_url" class="text_pole" placeholder="ws://127.0.0.1:3000">
+            </div>
+            
+            <div class="flex-container">
+                <label class="checkbox_label">
+                    <input type="checkbox" id="telegram_auto_connect">
+                    Auto-connect on startup
+                </label>
+            </div>
+
+            <div class="flex-container" style="margin-top: 10px;">
+                <button id="telegram_connect_button" class="menu_button">Connect</button>
+                <button id="telegram_disconnect_button" class="menu_button">Disconnect</button>
+            </div>
+
+            <div class="flex-container" style="margin-top: 10px;">
+                <span id="telegram_connection_status" style="font-weight: bold;">Status: Disconnected</span>
+            </div>
+            <div class="flex-container" style="margin-top: 10px;">
+                <small>Ensure the Bridge server is running before connecting.</small>
+            </div>
+        </div>
+    </div>
+</div>
